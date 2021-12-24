@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Advent of Code 2021 in React
+
+![image](https://user-images.githubusercontent.com/6985234/147364234-85470189-3850-40c5-bbba-d01110771b2f.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -18,6 +20,8 @@ You may also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+But there's no test at all, so don't lose your time in here.
 
 ### `npm run build`
 
