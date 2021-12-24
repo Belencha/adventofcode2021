@@ -2,35 +2,15 @@ import raw from "./day1Input.txt";
 
 const Day1 = () => {
     let inputData = "";
-    let numberOfIncreases = 0;
-    let numberOfWindowsIncreases = 0;
-
-    const countIncreasedMeasures = (currentMeasure, measures, total) => {
+    
+    async function countIncreasedMeasures(currentMeasure, measures, total) {
         if (measures.length === 0) {
             return total;
         }
         if (measures[0] > currentMeasure) {
             total++;
         }
-        /*console.log(total);*/
-        countIncreasedMeasures(measures.shift(), measures, total);
-    }
-
-    function countThreeWindowIncreasedMeasures(previousMeasure, measures, total) {
-        let partialSum = 0;
-        let currentNode = 0;
-
-        if (measures.length < 3) {
-            return total;
-        } else {
-            currentNode = measures.shift();
-            partialSum = currentNode + measures[0] + measures[1];
-            if (partialSum > previousMeasure && previousMeasure !== 0) {
-                total++;
-            }
-            console.log("Total: " + total);
-            return countThreeWindowIncreasedMeasures(partialSum, measures, total);
-        }
+        return await countIncreasedMeasures(measures.shift(), measures, total);
     }
 
     fetch(raw)
@@ -40,16 +20,16 @@ const Day1 = () => {
                 const regex = "[^\r]*";
                 return parseInt(each.match(regex)[0]);
             });
-            numberOfIncreases = countIncreasedMeasures(inputData[0], inputData, 0);
-            numberOfWindowsIncreases = countThreeWindowIncreasedMeasures(0, inputData, 0);
 
-            /* UNDEFINEEEEEED, oh shit, tengo que aprender esto */
-            console.log(`${ numberOfIncreases } are larger than the previous measurement`); 
-
-            console.log(`${ numberOfWindowsIncreases } are larger than the previous windows`);
+            countIncreasedMeasures(inputData[0], inputData, 0)
+                .then(
+                    numberOfIncreases => {
+                        console.log(`${ numberOfIncreases } are larger than the previous measurement`);
+                    }
+                );
 
         });
-        const message = `Day 1 half done`;
+        const message = `Day 1 first half done (⭐)`;
         return message;
     
 }
