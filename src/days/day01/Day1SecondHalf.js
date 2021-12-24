@@ -34,7 +34,7 @@ const Day1SecondHalf = () => {
                 });
 
         });
-        const message = `Day 1 secod half done (⭐)`;
+        const message = `Day 1 second half done (⭐)`;
         return message;
     
 }
