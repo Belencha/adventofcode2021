@@ -39,7 +39,7 @@ const Day2 = () => {
 
         });
 
-        const message = `Day 2 in progress...`;
+        const message = `Day 2 first half done (⭐)`;
         return message;
     
 }
