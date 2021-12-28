@@ -6,7 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To start coding
 
-Git clone del repo en tu local, `npm i` para instalarte todo y tener el `node_modules`, etc etc etc, y luego ya... `npm start` (abajo explicado).
+Firstly, you need to have `create-react-app` installed and `node` version updated to LTS.
+
+After assuring that, you do `git clone` from this project into your local, `npm i` to install everything and handle `node_modules`, etc etc etc, and then `npm start` (explained below).
 
 ## Available Scripts
 
@@ -46,6 +48,20 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Known problems
+
+### You compile and got `HTML Webpack plugin error`
+
+You do `npm i` and `npm start` and you see a beautiful `localhost:3000` with an error like:
+
+> **Failed** to compile
+> createRequire is not a function
+
+You have the answer to your problem [here](https://stackoverflow.com/questions/64835000/error-createrequire-is-not-a-function-referenced-from-baseconfig). You need to have installed:
+- create-react-app (`npx create-react-app` to check)
+- node version >= 12.0.0 (`nvm install --lts`)
+- npm version >= 8.0.0
 
 ## Learn More
 
