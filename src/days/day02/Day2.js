@@ -26,22 +26,22 @@ const Day2 = () => {
     fetch(raw)
         .then(r => r.text())
         .then(text => {
-            inputData = text.split('\n').map( each => {
+            inputData = text.split('\n').map(each => {
                 const regex = "[^\r]*";
                 const [instruction, number] = each.match(regex)[0].split(' ');
                 return [instruction, number];
             });
 
             dive(inputData)
-                .then( factor => {
-                    console.log(`I would have ${ factor } after following the planned course`);
+                .then(factor => {
+                    console.log(`I would have ${factor} after following the planned course`);
                 });
 
         });
 
-        const message = `Day 2 first half done (⭐)`;
-        return message;
-    
+    const message = `⭐`;
+    return message;
+
 }
 
 export default Day2;

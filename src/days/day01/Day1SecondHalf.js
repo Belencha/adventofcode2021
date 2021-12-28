@@ -22,7 +22,7 @@ const Day1SecondHalf = () => {
     fetch(raw)
         .then(r => r.text())
         .then(text => {
-            inputData = text.split('\n').map( each => {
+            inputData = text.split('\n').map(each => {
                 const regex = "[^\r]*";
                 return parseInt(each.match(regex)[0]);
             });
@@ -30,13 +30,13 @@ const Day1SecondHalf = () => {
             countThreeWindowIncreasedMeasures(0, inputData, 0)
                 .then(
                     numberOfWindowsIncreases => {
-                        console.log(`${ numberOfWindowsIncreases } are larger than the previous windows`);
-                });
+                        console.log(`${numberOfWindowsIncreases} are larger than the previous windows`);
+                    });
 
         });
-        const message = `Day 1 second half done (⭐)`;
-        return message;
-    
+    const message = `⭐`;
+    return message;
+
 }
 
 export default Day1SecondHalf;
