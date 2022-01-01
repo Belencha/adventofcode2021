@@ -4,7 +4,33 @@ const Day3 = () => {
     let inputData = "";
 
     async function binaryDiagnostic(binaryValues) {
-        return "hey";
+        const numberOfSamples = binaryValues.length;
+        const numberOfBits = binaryValues[0].length;
+        let gammaRate = [];
+        let epsilonRate = [];
+        let powerConsumption = 0;
+
+        for (let i = 0; i < numberOfBits; i++) {
+
+            let numberOf1s = 0;
+            for (let j = 0; j < numberOfSamples; j++) {
+                if (binaryValues[j][i] === "1") {
+                    numberOf1s += 1;
+                }
+            }
+            const numberOf0s = numberOfSamples - numberOf1s;
+            if (numberOf1s > numberOf0s) {
+                gammaRate[i] = "1";
+                epsilonRate[i] = "0";
+            } else {
+                gammaRate[i] = "0";
+                epsilonRate[i] = "1";
+            }
+        }
+
+        powerConsumption = parseInt(gammaRate.join(''), 2) * parseInt(epsilonRate.join(''), 2);
+
+        return powerConsumption;
     }
 
     fetch(raw)
@@ -22,7 +48,7 @@ const Day3 = () => {
 
         });
 
-    const message = `null`;
+    const message = `⭐`;
     return message;
 }
 

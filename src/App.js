@@ -14,7 +14,7 @@ function App() {
         <section className='content'>
           <p>Day 1 done (<Day1 /><Day1SecondHalf />)</p>
           <p>Day 2 done (<Day2 /><Day2SecondHalf />)</p>
-          <p>Day 3... in progress... <Day3 /></p>
+          <p>Day 3 half done (<Day3 />)</p>
         </section>
       </header>
     </div>
