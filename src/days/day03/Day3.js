@@ -29,7 +29,6 @@ const Day3 = () => {
         }
 
         powerConsumption = parseInt(gammaRate.join(''), 2) * parseInt(epsilonRate.join(''), 2);
-
         return powerConsumption;
     }
 

@@ -1,0 +1,17 @@
+(A) From Part 1 I've already had these values:
+GammaRate: 010001110111, EpsilonRate: 101110001000
+
+(B) Using [regex101.com](regex101.com) I have been identified:
+- oxygen generator rating: 010001110011 (unique result matching ^010001110)
+- CO2 scrubber rating: 101110001100 (unique result matching ^101110001)
+
+(C) Converting both numbers from binary to decimal:
+- oxygen generator rating: 1139
+- CO2 scrubber rating: 2956
+
+(D) Multiplying them for getting the life support rating:
+Using the calculator: 1139 * 2956 = 3366884
+
+----
+
+BAAAAAD - it didn't work out! This value is too low (AoC said)
