@@ -5,6 +5,7 @@ import Day1SecondHalf from './days/day01/Day1SecondHalf';
 import Day2 from './days/day02/Day2';
 import Day2SecondHalf from './days/day02/Day2SecondHalf';
 import Day3 from './days/day03/Day3';
+import Day3SecondHalf from './days/day03/Day3SecondHalf';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <section className='content'>
           <p>Day 1 done (<Day1 /><Day1SecondHalf />)</p>
           <p>Day 2 done (<Day2 /><Day2SecondHalf />)</p>
-          <p>Day 3 half done (<Day3 />)</p>
+          <p>Day 3 half done (<Day3 /><Day3SecondHalf />)</p>
         </section>
       </header>
     </div>
