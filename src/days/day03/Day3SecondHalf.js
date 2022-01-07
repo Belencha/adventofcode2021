@@ -2,53 +2,65 @@ import raw from "./day3Input.txt";
 
 const Day3SecondHalf = () => {
     let inputData = "";
+    let oxygenGeneratorRating = 0;
+    let CO2ScrubberRating = 0;
 
+    async function generateOxygenGeneratorRating(samples, index) {
+        const numberOfSamples = samples.length;
+        const numberOfBits = samples[0].length;
 
-    async function binaryDiagnostic(binaryValues) {
-        const numberOfSamples = binaryValues.length;
-        const numberOfBits = binaryValues[0].length;
-        let gammaRate = [];
-        let epsilonRate = [];
-        let powerConsumption = 0;
+        if (numberOfSamples === 1) {
+            return samples[0];
+        }
+        if (index > numberOfBits) {
+            return null;
+        }
 
-        for (let i = 0; i < numberOfBits; i++) {
-
-            let numberOf1s = 0;
-            for (let j = 0; j < numberOfSamples; j++) {
-                if (binaryValues[j][i] === "1") {
-                    numberOf1s += 1;
-                }
-            }
-            const numberOf0s = numberOfSamples - numberOf1s;
-            if (numberOf1s > numberOf0s) {
-                gammaRate[i] = "1";
-                epsilonRate[i] = "0";
-            } else {
-                gammaRate[i] = "0";
-                epsilonRate[i] = "1";
+        let numberOf1s = 0;
+        for (let j = 0; j < numberOfSamples; j++) {
+            if (samples[j][index] === "1") {
+                numberOf1s += 1;
             }
         }
-        console.clear();
-        console.log(`GammaRate: ${gammaRate.join('')}, EpsilonRate: ${epsilonRate.join('')}`);
-
-        let oxygenGeneratorRating = binaryValues.filter((binaryValue) => {
-            const regex = /^010001110/; // -4
-            return binaryValue.match(regex);
-        });
-        oxygenGeneratorRating = parseInt(oxygenGeneratorRating[0], 2);
-        console.log(`Oxygen Generator Rating: ${oxygenGeneratorRating}`);
-
-        let CO2ScrubberRating = binaryValues.filter((binaryValue) => {
-            const regex = /^101110001/; // -3
-            return binaryValue.match(regex);
-        });
-        CO2ScrubberRating = parseInt(CO2ScrubberRating[0], 2);
-        console.log(`CO2 Scrubber Rating: ${CO2ScrubberRating}`);
-
-        const lifeSupportRating = oxygenGeneratorRating * CO2ScrubberRating;
-        console.log(`Life Support Rating: ${lifeSupportRating}`);
-        return lifeSupportRating;
+        const numberOf0s = numberOfSamples - numberOf1s;
+        let bitMostPopular = "";
+        if (numberOf1s >= numberOf0s) {
+            bitMostPopular = "1";
+        } else {
+            bitMostPopular = "0";
+        }
+        
+        return await generateOxygenGeneratorRating(samples.filter(sample => sample[index] === bitMostPopular), ++index);
     }
+
+    async function generateCO2ScrubberRating(samples, index) {
+        const numberOfSamples = samples.length;
+        const numberOfBits = samples[0].length;
+
+        if (numberOfSamples === 1) {
+            return samples[0];
+        }
+        if (index > numberOfBits) {
+            return null;
+        }
+
+        let numberOf1s = 0;
+        for (let j = 0; j < numberOfSamples; j++) {
+            if (samples[j][index] === "1") {
+                numberOf1s += 1;
+            }
+        }
+        const numberOf0s = numberOfSamples - numberOf1s;
+        let bitLeastPopular = "";
+        if (numberOf1s >= numberOf0s) {
+            bitLeastPopular = "0";
+        } else {
+            bitLeastPopular = "1";
+        }
+        
+        return await generateCO2ScrubberRating(samples.filter(sample => sample[index] === bitLeastPopular), ++index);
+    }
+    
 
     fetch(raw)
         .then(r => r.text())
@@ -58,9 +70,16 @@ const Day3SecondHalf = () => {
                 return each.match(regex)[0];
             });
 
-            binaryDiagnostic(inputData)
-                .then(power => {
-                    console.log(`Day3 second half: ${power}`);
+            generateOxygenGeneratorRating(inputData, 0)
+                .then(ogr => {
+                    oxygenGeneratorRating = parseInt(ogr, 2);
+                    console.log(`Oxygen Generator Rating: ${oxygenGeneratorRating}`);
+                });
+
+            generateCO2ScrubberRating(inputData, 0)
+                .then(co2sr => {
+                    CO2ScrubberRating = parseInt(co2sr, 2);
+                    console.log(`CO2 Scrubber Rating: ${CO2ScrubberRating}`);
                 });
 
         });
